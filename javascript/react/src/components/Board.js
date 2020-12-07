@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import Square from './Square';
+import './Board.css';
+import Square from './Square.js';
 
 class Board extends Component {
     renderSquare(i) {
-        console.log(this.props);
         return (
             <Square
                 value={this.props.squares[i]}
