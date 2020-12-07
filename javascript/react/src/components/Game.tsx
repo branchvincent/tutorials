@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import Board from './Board.js';
+import React, { useState } from 'react';
+import Board from './Board';
 import './Game.css';
 
-
-const calculateWinner = (squares) => {
+const calculateWinner = (squares: number[]): number | null => {
     const lines = [
         [0, 1, 2],
         [3, 4, 5],
@@ -23,14 +22,14 @@ const calculateWinner = (squares) => {
     return null;
 }
 
-const Game = () => {
+const Game = (): React.ReactElement => {
     // State vars
     const [history, setHistory] = useState([{squares: Array(9).fill(null)}]);
     const [stepNumber, setStepNumber] = useState(0);
     const [xIsNext, setXIsNext] = useState(true);
 
     // Event handlers
-    const handleClick = (i) => {
+    const handleClick = (i: number): void => {
         const newHistory = history.slice(0, stepNumber + 1);
         const { squares } = newHistory[newHistory.length - 1];
         const newSquares = squares.slice();
@@ -45,7 +44,7 @@ const Game = () => {
         setXIsNext(!xIsNext);
     }
 
-    const jumpTo = (step) => {
+    const jumpTo = (step: number): void => {
         setStepNumber(step);
         setXIsNext((step % 2) === 0);
     }
