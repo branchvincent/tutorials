@@ -1,0 +1,53 @@
+[project]
+name = "app"
+version = "0.1.0"
+description = "FastAPI demo"
+authors = [{name = "Branch Vincent", email = "branchevincent@gmail.com"}]
+requires-python = ">=3.9"
+dynamic = ["classifiers"]
+dependencies = [
+    "databases[sqlite]~=0.5",
+    "fastapi-crudrouter~=0.8",
+    "fastapi-utils~=0.2",
+    "fastapi~=0.68",
+    "loguru~=0.5",
+    "ormar~=0.10",
+    "sqlalchemy~=1.4",
+    "uvicorn~=0.15",
+]
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "black",
+    "flake8",
+    "isort",
+    "mypy",
+    "pre-commit",
+    "pyproject-flake8",
+    "pytest",
+]
+
+[tool.pdm.scripts]
+clean = { shell = "rm -rf .mypy_cache/ .pytest_cache/ build/ dist/ *.egg-info", help = "Remove build artifacts" }
+lint = { shell = "pre-commit run --all-files", help = "Run linters and formatters" }
+start = { cmd = "uvicorn app:app --reload", help = "Start server" }
+test = { shell = "pytest", help = "Run tests" }
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = "E203"
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
+disallow_untyped_decorators = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["pdm-pep517"]
+build-backend = "pdm.pep517.api"
