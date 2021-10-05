@@ -25,6 +25,7 @@ dev = [
     "pre-commit",
     "pyproject-flake8",
     "pytest",
+    "schemathesis~=3.10",
 ]
 
 [tool.pdm.scripts]
